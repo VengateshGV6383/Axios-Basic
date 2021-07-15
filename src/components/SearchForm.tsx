@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-
-const SearchForm = (props) => {
-    const getData=async (query)=>{
+interface Props{
+    setres:(val:Array<Object>)=>void;
+}
+const SearchForm = (props:Props) => {
+    const getData=async (query:String)=>{
         const response=await axios.get("https://en.wikipedia.org/w/api.php",{
             params:
             {
@@ -17,9 +19,9 @@ const SearchForm = (props) => {
         props.setres(response.data.query?.search);
         }
         
-    const debouncer= (fn,delay)=>{
-            let timer;
-            return(val)=>{
+    const debouncer= (fn:Function,delay:number):Function=>{
+            let timer:any;
+            return(val:string)=>{
                 clearTimeout(timer);   
                 timer=setTimeout(()=>{
                         fn(val)
