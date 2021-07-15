@@ -1,20 +1,39 @@
-import React, { useState } from 'react';
-const SearchForm = (props) => {
+import React from 'react';
+import axios from 'axios';
 
-    const [query,setQuery]=useState('');
-    const searchQuery= (e)=>{
-        e.preventDefault();
-        props.onSearch(query)
+const SearchForm = (props) => {
+    const getData=async (query)=>{
+        const response=await axios.get("https://en.wikipedia.org/w/api.php",{
+            params:
+            {
+                action:"query",
+                list:"search",
+                srsearch:`${query}`,
+                format:"json",
+                origin:"*"
+            }
+        })
+        props.setres(response.data.query?.search);
+        }
+        
+    const debouncer= (fn,delay)=>{
+            let timer;
+            return function(val){
+                clearTimeout(timer);   
+                timer=setTimeout(()=>{
+                        fn.call(this,val);
+                },delay)   
+            }
+           
     }
+  const handleOnchange=debouncer(getData,2000)
     
     return (  
-        <form className="ui form" onSubmit={searchQuery}>
+        <form className="ui form">
             <div className="field">
                 <label htmlFor="search"><h3>Type what you want to search</h3></label>
-                <input type="text" name="search" onChange={(e)=>setQuery(e.target.value)} value={query}/>
+                <input type="text" name="search" onChange={(e)=>handleOnchange(e.target.value)}/>
             </div>
-            <button type="submit" className="ui primary button" value="Search">Search</button>
-
         </form>
     );
 }

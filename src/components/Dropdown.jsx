@@ -7,10 +7,10 @@ const Dropdown = (props) => {
     
     return(
         <React.Fragment>
-            { props.results.map((item,index)=>{
+            { props.results?.map((item,index)=>{
                 
             return (
-                <div onClick={()=>handleOnclick(index)}>
+                <div onClick={()=>handleOnclick(index)} key={item.pageid}>
                     <div className={idx===index?"active title":"title"}>
                     <i className="dropdown icon"></i>
                     {item.title}
