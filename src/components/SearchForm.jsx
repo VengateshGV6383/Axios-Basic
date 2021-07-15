@@ -30,12 +30,12 @@ const SearchForm = (props) => {
   const handleOnchange=debouncer(getData,2000)
     
     return (  
-        <form className="ui form">
+        <div className="ui form">
             <div className="field">
                 <label htmlFor="search"><h3>Type what you want to search</h3></label>
                 <input type="text" name="search" onChange={(e)=>handleOnchange(e.target.value)}/>
             </div>
-        </form>
+        </div>
     );
 }
  
