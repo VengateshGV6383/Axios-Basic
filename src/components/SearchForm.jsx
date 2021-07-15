@@ -13,15 +13,16 @@ const SearchForm = (props) => {
                 origin:"*"
             }
         })
+        
         props.setres(response.data.query?.search);
         }
         
     const debouncer= (fn,delay)=>{
             let timer;
-            return function(val){
+            return(val)=>{
                 clearTimeout(timer);   
                 timer=setTimeout(()=>{
-                        fn.call(this,val);
+                        fn(val)
                 },delay)   
             }
            

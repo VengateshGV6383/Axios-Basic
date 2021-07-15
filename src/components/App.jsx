@@ -4,7 +4,6 @@ import SearchForm from './SearchForm';
 const App = () => {
     const [res,setResults]=useState([]);
     const [loader,showLoader]=useState(false)
-    
 
     return (
         <React.Fragment>
