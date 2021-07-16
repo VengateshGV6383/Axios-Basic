@@ -32,7 +32,7 @@ const SearchForm = (props:Props) => {
             }
            
     }
-  const handleOnchange=debouncer(getData,2000)
+  const handleOnchange=debouncer(getData,1000)
     
     return (  
         <div className="ui form">
