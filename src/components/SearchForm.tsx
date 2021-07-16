@@ -4,6 +4,7 @@ interface Props{
     setres:(val:Array<Object>)=>void;
 }
 const SearchForm = (props:Props) => {
+    
     const getData=async (query:String)=>{
         const response=await axios.get("https://en.wikipedia.org/w/api.php",{
             params:
@@ -19,9 +20,11 @@ const SearchForm = (props:Props) => {
         props.setres(response.data.query?.search);
         }
         
-    const debouncer= (fn:Function,delay:number):Function=>{
+    const debouncer= (fn:(query:String)=>Promise<void>,delay:number):Function=>{
             let timer:any;
+
             return(val:string)=>{
+                
                 clearTimeout(timer);   
                 timer=setTimeout(()=>{
                         fn(val)
@@ -35,7 +38,7 @@ const SearchForm = (props:Props) => {
         <div className="ui form">
             <div className="field">
                 <label htmlFor="search"><h3>Type what you want to search</h3></label>
-                <input type="text" name="search" onChange={(e)=>handleOnchange(e.target.value)}/>
+                <input type="text" name="search"  onChange={(e)=>handleOnchange(e.target.value)}/>
             </div>
         </div>
     );
