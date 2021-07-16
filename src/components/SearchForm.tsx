@@ -18,8 +18,8 @@ const SearchForm = (props:Props) => {
         
         props.setres(response.data.query?.search);
         }
-        
-    const debouncer= (fn:Function,delay:number):Function=>{
+    type get=(val:string)=>void;
+    const debouncer= (fn:(quey:String)=>Promise<void>,delay:number):get=>{
             let timer:any;
             return(val:string)=>{
                 clearTimeout(timer);   
