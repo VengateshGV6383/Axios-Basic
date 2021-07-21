@@ -2,6 +2,7 @@
   "name": "api-axios",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://github.io/VengateshGV6383/Axios-Basic",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -14,7 +15,10 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "prebuild": "set PUBLIC_URL=https://VengateshGV6383.github.io/Axios-Basic",
     "build": "react-scripts build",
+    "predeploy": "npm run build", 
+    "deploy": "gh-pages -d build", 
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -37,6 +41,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react": "^17.0.14"
+    "@types/react": "^17.0.14",
+    "gh-pages": "^3.2.3"
   }
 }
